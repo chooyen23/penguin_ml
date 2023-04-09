@@ -23,9 +23,10 @@ if password_guess != 'streamlit_is_great':
   st.stop() 
 
   
-
-penguin_file = st.file_uploader('Upload your own penguin data') 
-
+try:
+  penguin_file = st.file_uploader('Upload your own penguin data') 
+except Exception:
+  pass
 if penguin_file is None: 
 
     rf_pickle = open('random_forest_penguin.pickle', 'rb') 
@@ -41,7 +42,7 @@ if penguin_file is None:
     map_pickle.close() 
 
 else: 
-
+  
     penguin_df = pd.read_csv(penguin_file) 
 
     penguin_df = penguin_df.dropna() 
